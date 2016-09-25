@@ -94,7 +94,7 @@ while numturns > 0:
         continue
     # check to see if they already guessed that position
     elif fullboard[uy][ux] == "-":
-        print("You already picked this positon. Plesae try again")
+        print("You already picked this positon. Please try again")
         continue
     # replace userguess with miss styling if it's incorrect
     else:
