@@ -104,7 +104,7 @@ while numturns > 0:
             print("Sorry, I didn't understand that. Please try again, and remember to use proper formatting (eg '1,5')")
             continue
         else:
-            # coordinates successufuly parsed
+            # coordinates successfully parsed
             break
     if debug:
         print("User Guesses:")
