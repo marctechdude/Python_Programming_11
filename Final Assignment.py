@@ -4,8 +4,6 @@
 # importing random
 from random import randint
 
-from Tools.scripts.treesync import raw_input
-
 # don't really need a class for this but "challenge yourself"
 class Settings:
     columns = 0
@@ -22,11 +20,31 @@ debug = False
 battleBoard = Settings()
 
 # defining number of columns, rows, and styling of the board
-battleBoard.columns = int(raw_input("How many columns would like your board to have?: "))
-battleBoard.rows = int(raw_input("How many rows would like your board to have?: "))
+# basically just repeated the function over and over again
+# will fix this once i figure out a way, but it works for now.
+while True:
+    try:
+        battleBoard.columns = int(input("How many columns would like your board to have?: "))
+    except ValueError:
+        print("Please input a valid number")
+    else:
+        break
+while True:
+    try:
+        battleBoard.rows = int(input("How many rows would like your board to have?: "))
+    except ValueError:
+        print("Please input a valid number")
+    else:
+        break
+while True:
+    try:
+        battleBoard.turns = int(input("How many turns would like to have?: "))
+    except ValueError:
+        print("Please input a valid number")
+    else:
+        break
 battleBoard.style = "O"
 battleBoard.stylemiss = "-"
-battleBoard.turns = int(raw_input("How many turns would like to have?: "))
 # function to make the board
 fullboard = []
 # does this as many times as there are rows
@@ -68,15 +86,26 @@ numturns = battleBoard.turns
 # big for loop for turns
 while numturns > 0:
     turnsremain = int((battleBoard.turns-turncounter)-1)
-    userguess = raw_input("What row is your guess? Please give the coordinates in the 'x,y' format: ")
-    # parsing text
-    # takes userguess and converts it to a list (because of the [])
-    # ie. userguess = '3,2' becomes ['3,2']
-    # then it splits it from the comma (',')
-    # so userguess = ['3','2']
-    # then it takes each index in ['3','2'] (which is userguess) and converts it to a number (the for loop and int(i))
-    # then it takes the integer and assignes it to the variables, in this case it's ux and uy
-    ux,uy = [int(i)-1 for i in userguess.split(",")]
+    ### after riley tried meticulously to break my code, I decided to include a fail safe
+    while True:
+        try:
+            userguess = input("What row is your guess? Please give the coordinates in the 'x,y' format: ")
+            # parsing text
+            # takes userguess and converts it to a list (because of the [])
+            # ie. userguess = '3,2' becomes ['3,2']
+            # then it splits it from the comma (',')
+            # so userguess = ['3','2']
+            # then it takes each index in ['3','2'] (which is userguess) and converts it to a number (the for loop and int(i))
+            # then it takes the integer and assignes it to the variables, in this case it's ux and uy
+            ux,uy = [int(i)-1 for i in userguess.split(",")]
+        # if there's an error
+        except ValueError:
+            # try again
+            print("Sorry, I didn't understand that. Please try again, and remember to use proper formatting (eg '1,5')")
+            continue
+        else:
+            # coordinates successufuly parsed
+            break
     if debug:
         print("User Guesses:")
         print(ux+1)
