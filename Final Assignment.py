@@ -22,26 +22,59 @@ battleBoard = Settings()
 # defining number of columns, rows, and styling of the board
 # basically just repeated the function over and over again
 # will fix this once i figure out a way, but it works for now.
+if debug:
+    while True:
+        try:
+            battleBoard.columns = int(input("How many columns would like your board to have?: "))
+        except ValueError:
+            print("Please input a valid number")
+        else:
+            break
+    while True:
+        try:
+            battleBoard.rows = int(input("How many rows would like your board to have?: "))
+        except ValueError:
+            print("Please input a valid number")
+        else:
+            break
+    while True:
+        try:
+            battleBoard.turns = int(input("How many turns would like to have?: "))
+        except ValueError:
+            print("Please input a valid number")
+        else:
+            break
+
+# setting the difficulty
 while True:
     try:
-        battleBoard.columns = int(input("How many columns would like your board to have?: "))
+        diff = input("Please enter a difficulty. (easy, normal, hard, hell)")
+        if diff == 'easy':
+            battleBoard.columns = 5
+            battleBoard.rows = 5
+            battleBoard.turns = 15
+        elif diff == 'normal':
+            battleBoard.columns = 7
+            battleBoard.rows = 7
+            battleBoard.turns = 10
+        elif diff == 'hard':
+            battleBoard.columns = 10
+            battleBoard.rows = 10
+            battleBoard.turns = 10
+        elif diff == 'hell':
+            battleBoard.columns = 20
+            battleBoard.rows = 20
+            battleBoard.turns = 10
+        # the following else statement is already a fail safe
+        else:
+            print("You have selected an invalid difficulty. Please try again.")
+            continue
+    # a second fail safe in case something goes horribly wrong
     except ValueError:
-        print("Please input a valid number")
+        print("You have selected an invalid difficulty. Please try again.")
+        continue
     else:
-        break
-while True:
-    try:
-        battleBoard.rows = int(input("How many rows would like your board to have?: "))
-    except ValueError:
-        print("Please input a valid number")
-    else:
-        break
-while True:
-    try:
-        battleBoard.turns = int(input("How many turns would like to have?: "))
-    except ValueError:
-        print("Please input a valid number")
-    else:
+        print("You have selected the %s difficulty. Good luck!" % diff)
         break
 battleBoard.style = "O"
 battleBoard.stylemiss = "-"
