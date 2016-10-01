@@ -22,7 +22,7 @@ class Settings:
     bombcount = 0
 
 # debugging toggle (yes this gives you cheats)
-debug = True
+debug = False
 # making an object
 battleBoard = Settings()
 
