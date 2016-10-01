@@ -4,7 +4,8 @@
 # importing
 from random import randint
 
-from math import floor
+# will be needing this later
+# from math import floor
 
 from time import sleep
 
@@ -14,14 +15,14 @@ class Settings:
     rows = 0
     style = ""
     stylemiss = ""
+    styleposition = ""
+    stylehit = ""
     turns = 0
     bombcost = 0
     bombcount = 0
 
 # debugging toggle (yes this gives you cheats)
-debug = False
-
-
+debug = True
 # making an object
 battleBoard = Settings()
 
@@ -70,6 +71,8 @@ if debug:
 battleBoard.style = "O"
 battleBoard.stylemiss = "-"
 battleBoard.bombcount = 3
+battleBoard.styleposition = "B"
+battleBoard.stylehit = "X"
 # setting the difficulty
 if not debug:
     while True:
@@ -186,7 +189,7 @@ while numturns > 0:
     # simple if statement to see if userguess and computer guess match
     if ux == battleloccol and uy == battlelocrow:
         print("Congrats! You win")
-        fullboard[uy][ux] = "X"
+        fullboard[uy][ux] = battleBoard.stylehit
         fullrows(fullboard)
         break
     # check to see if position is on map
@@ -208,11 +211,18 @@ while numturns > 0:
     if not turnsremain == 0:
         print("Turns Remaining: %d" % turnsremain)
         sleep(1)
+    # replace computer's position with a "B"
     else:
         print("You lose!")
         sleep(1)
+        print("The computer's position was here: (%s, %s)" % (battleloccol+1,battlelocrow+1))
+        sleep(0.5)
+        print("The position is marked with a \"B\" on the board")
+        fullboard[battlelocrow][battleloccol] = battleBoard.styleposition
+        sleep(1)
+    # counting down turns for while loop
     turncounter += 1
     numturns -= 1
     # printing the damn thing
     fullrows(fullboard)
-    ### End of code
+### End of code
