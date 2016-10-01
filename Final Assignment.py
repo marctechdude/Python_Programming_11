@@ -194,7 +194,7 @@ while numturns > 0:
         break
     # check to see if position is on map
     if uy >= battleBoard.rows or ux >= battleBoard.columns or ux < 0 or uy < 0:
-        print("Your selected position is not on the board. Please pick a new position or increase the size of the board.")
+        print("Your selected position is not on the board. Please pick a new position.")
         sleep(1)
         continue
     # check to see if they already guessed that position
