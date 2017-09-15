@@ -7,9 +7,13 @@ def roll(sides):
     return num
 
 def main():
+    ## always loop
     while True:
+        ## get userinput
         userinput = input("Press 'RETURN' to roll or type 'q' to quit.")
+        ## set sides
         sides = 6
+        ## check if they typed q
         if userinput.lower() != "q":
             print("You rolled %s. "% roll(sides))
         else:
